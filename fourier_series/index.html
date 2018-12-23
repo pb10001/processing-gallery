@@ -96,7 +96,7 @@ h(k) &=& (2k - 1)^2
 <p>とすれば\(p_{ny}(t)\)は三角波に他ならない。</p>
 <h3>実装</h3>
 <p>まず一般化しておく</p>
-<pre>
+<pre class="highlight">
     <code class="java">
     abstract class FourierCircle {
         final float R0;
@@ -123,7 +123,7 @@ h(k) &=& (2k - 1)^2
     </code>
 </pre>
 <p>FourierCircleを継承して矩形波、三角波を作成</p>
-<pre>
+<pre class="highlight">
     <code class="java">
     class SquareWave extends FourierCircle {
         /* square wave */
