@@ -97,7 +97,7 @@ h(k) &=& (2k - 1)^2
 <h3>実装</h3>
 <p>まず一般化しておく</p>
 <pre>
-    <code lang="java">
+    <code class="java">
     abstract class FourierCircle {
         final float R0;
         float cx, cy, r, n, px, py;
@@ -124,7 +124,7 @@ h(k) &=& (2k - 1)^2
 </pre>
 <p>FourierCircleを継承して矩形波、三角波を作成</p>
 <pre>
-    <code lang="java">
+    <code class="java">
     class SquareWave extends FourierCircle {
         /* square wave */
         public SquareWave(float cx, float cy, float n ,int time, float r) {
