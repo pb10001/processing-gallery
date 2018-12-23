@@ -26,9 +26,6 @@ void draw() {
   scale(SCALE);
   background(#FFFFFF);
   
-  if(time / interval < PERIOD * LOOP_NUM) time++;
-  else noLoop();
-  
   FourierCircle c0 = new SquareWave(WIDTH / 2, HEIGHT / 4, 1, time / interval, INIT_RADIUS);
   FourierCircle c1 = new TriangleWave(WIDTH / 2, 3 * HEIGHT / 4, 1, time / interval, INIT_RADIUS);
   
@@ -38,6 +35,9 @@ void draw() {
   line(100, HEIGHT / 2  + OFFSET, 100, HEIGHT - OFFSET);
   render(c0, locus0);
   render(c1, locus1);
+  
+  if(time / interval < PERIOD * LOOP_NUM) time++;
+  else noLoop();
 }
 void mousePressed(){
   time = 0;
