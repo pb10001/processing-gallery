@@ -1,3 +1,3 @@
-- [フーリエ級数](/processing-gallery/fourier_series)
+- [フーリエ級数](./fourier_series)
 - [ランダムウォーク](/processing-gallery/random_walk)
 - [波](/processing-gallery/wave_simulation)
