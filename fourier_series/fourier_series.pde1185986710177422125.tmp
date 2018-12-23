@@ -94,7 +94,6 @@ abstract class FourierCircle {
     this.cx = cx;
     this.cy = cy;
     this.n = n;
-    this.R0 = r;
     this.r = r * r0() / radiusRatio(n);
     this.time = time;
     

@@ -87,14 +87,13 @@ class Point {
   }
 }
 abstract class FourierCircle {
-  final float R0;
+  protected final float R0;
   float cx, cy, r, n, px, py;
   int time;
   public FourierCircle(float cx, float cy, float n ,int time, float r) {
     this.cx = cx;
     this.cy = cy;
     this.n = n;
-    this.R0 = r;
     this.r = r * r0() / radiusRatio(n);
     this.time = time;
     
@@ -112,9 +111,10 @@ class SquareWave extends FourierCircle {
   /* square wave */
   public SquareWave(float cx, float cy, float n ,int time, float r) {
     super(cx, cy, n , time, r);
+    this.R0 = r;
   }
   public float r0() {
-    return 4 / PI;
+    return R0 * 4 / PI;
   }
   public float sign(float n) {
     return 1;
@@ -132,10 +132,11 @@ class SquareWave extends FourierCircle {
 class TriangleWave extends FourierCircle {
   /* triangle wave */
   public TriangleWave(float cx, float cy, float n ,int time, float r) {
-    super(cx, cy, n , time, r);
+    super(cx, cy, n , time);
+    this.R0 = r;
   }
   public float r0() {
-    return 8 / PI / PI;
+    return R0 * 8 / PI / PI;
   }
   public float sign(float n) {
     return n % 2 == 1 ? 1: -1;
