@@ -1,21 +1,21 @@
 class SquareWave extends FourierCircle {
   /* square wave */
-  public SquareWave(float cx, float cy, float n ,int time, float r) {
-    super(cx, cy, n , time, r);
+  public SquareWave(float cx, float cy, float n ,int time, float r, float period) {
+    super(cx, cy, n , time, r, period);
   }
   public float r0() {
     return 4 / PI;
   }
-  public float sign(float n) {
+  public float sign() {
     return 1;
   }
-  public float freqRatio(float n) {
-    return 2 * n - 1;
+  public float freqRatio() {
+    return 2 * this.n - 1;
   }
-  public float radiusRatio(float n) {
-    return 2 * n - 1;
+  public float radiusRatio() {
+    return 2 * this.n - 1;
   }
   public SquareWave getChild() {
-    return new SquareWave(px, py, n + 1 ,this.time, R0);
+    return new SquareWave(getPx(), getPy(), n + 1 ,this.time, size, period);
   }
 }

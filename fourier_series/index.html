@@ -9,11 +9,14 @@ highlighter: rouge
 <h2>フーリエ級数</h2>
 <p>よくある円でフーリエ級数を表現するアレ</p>
 <h3>デモ</h3>
-<canvas data-processing-sources="./fourier_series.pde ./fourier_circle.pde ./circles.pde ./drawable.pde ./locus.pde ./square_wave.pde ./triangle_wave.pde"></canvas>
+<canvas data-processing-sources="./fourier_series.pde ./fourier_circle.pde ./circles.pde ./drawable.pde ./locus.pde ./square_wave.pde ./triangle_wave.pde ./sawtooth_wave.pde"></canvas>
 <p>クリックで再描画</p>
 <h3>原理</h3>
-<p>フーリエ級数とは、関数を三角関数の無限和で表したもの。</p>
-<p>矩形波と三角波はそれぞれ以下のようにフーリエ級数展開できる。</p>
+<p>フーリエ級数とは、周期関数を三角関数の無限和で表したもの。</p>
+\[
+f(t) = \frac {a_0} 2 + \sum_{k=1}^{\infty} {a_k \cos{2\pi fkt} + b_k \sin{2\pi fkt}}
+\]
+<p>矩形波と三角波はそれぞれ以下のようにフーリエ級数展開できる(奇関数なので定数項とcosの係数は0)。</p>
 <p>矩形波</p>
 \begin{eqnarray}
 f(t) &=& \frac 4 {\pi} \sum_{n=1}^{\infty} \frac {\sin{\{(2n-1)2\pi ft}\}} {(2n-1)}  \\
@@ -34,53 +37,58 @@ f(t) &=& \frac 8 {\pi^2} \sum_{n=1}^{\infty} \sin { \left\{ \frac{(2n-1)\pi} 2 \
 \[
 (c_x + r\cos(2\pi ft), c_y - r\sin(2\pi ft))
 \]
-<p>である。ここで\(円k: 中心(c_{kx}, c_{ky}), 半径r_k (k = 0, 1, 2, 3, ...) \)を考え、
+<p>である。ここで円\(k\): 中心\(\left(c_{kx}, c_{ky}\right)\), 半径\(r_k (k = 0, 1, 2, 3, ...) \)を考え、
 円\(k\)の中心を、円\(k-1\)上を周期\(f_{k-1}\)で等速円運動する点\(P_{k-1}\)と同じ座標になるように定義する。</p>
 <p>また、\(r_0\)と\(r_k\)の比を\(g(k)\), \(f_0\)と\(f_k\)の比を\(h(k)\)で表す。</p>
 <p>さらに回転方向を表すために、kに対して1または-1を返す関数\(s(k)\)を用意する。</p>
 \begin{eqnarray}\\
 c_{kx}(t) &=& 
 \begin{cases}
-0 & (k=1) \\
-p_{(k-1)x}(t) & (k = 2,3, ...) \\
+0 & (k=0) \\
+p_{(k-1)x}(t) & (k = 1,2,3, ...) \\
 \end{cases} \\
 c_{ky}(t) &=& 
 \begin{cases}
-0 & (k=1) \\
-p_{(k-1)y}(t) & (k = 2,3, ...) \\
+0 & (k=0) \\
+p_{(k-1)y}(t) & (k = 1,2,3, ...) \\
 \end{cases} \\
 r_k &=&
 \begin{cases}
-1 & (k=1) \\
-\frac {r_0} {g(k)} & (k = 2,3, ...)
+r_0 & (k=0) \\
+\frac {r_0} {g(k)} & (k = 1,2,3, ...)
 \end{cases} \\
 f_k &=&
 \begin{cases}
-1 & (k=1) \\
-f_0 h(k) & (k = 2,3, ...)
+1 & (k=0) \\
+f_0 h(k) & (k = 1,2,3, ...)
 \end{cases} \\
 \end{eqnarray}
 <p>このとき(1)を使うと、kについての漸化式が得られる。</p>
 \begin{eqnarray}
 c_{kx}(t) &=& 
 \begin{cases}
-0 & (k=1) \\
-c_{(k-1)x}(t) + \frac {r_0} {g(k-1)} \cos { \frac{2\pi f_0 t} {h(k-1)} } & (k = 2,3, ...) \\
+0 & (k=0) \\
+c_{(k-1)x}(t) + \frac {r_0} {g(k)} \cos { \frac{2\pi f_0 t} {h(k)} } & (k = 1,2,3, ...) \\
 \end{cases} \\
 c_{ky}(t) &=& 
 \begin{cases}
-0 & (k=1) \\
-c_{(k-1)y}(t) + s(k-1) \frac {r_0} {g(k-1)} \sin { \frac{2\pi f_0 t} {h(k-1)} } & (k = 2,3, ...) \\
+0 & (k=0) \\
+c_{(k-1)y}(t) + s(k) \frac {r_0} {g(k)} \sin { \frac{2\pi f_0 t} {h(k)} } & (k = 1,2,3, ...) \\
 \end{cases} \\
 \end{eqnarray}
 <p>円nの円周上の点の座標は</p>
 \begin{eqnarray}
 p_{nx}(t) &=& c_{(n+1)x}(t) \\
-&=& r_0\sum_{k=1}^n {\frac 1 {g(k)} \cos { 2\pi f_0 h(k) t }} \\
+&=& r_0\sum_{k=1}^{n+1} {\frac 1 {g(k)} \cos { 2\pi f_0 h(k) t }} \\
 p_{ny}(t) &=& c_{(n+1)y}(t) \\
-&=& r_0\sum_{k=1}^n {s(k)\frac 1 {g(k)} \sin { 2\pi f_0 h(k) t} }
+&=& r_0\sum_{k=1}^{n+1} {s(k)\frac 1 {g(k)} \sin { 2\pi f_0 h(k) t} }
 \end{eqnarray}
-<p>この式をよく見ると、</p>
+<p>\(n\to\infty\)の極限をとると(本当は収束することの証明が必要)</p>
+\begin{eqnarray}
+p_{\infty x}(t) &=& r_0\sum_{k=1}^{\infty} {\frac 1 {g(k)} \cos { 2\pi f_0 h(k) t }} \\
+p_{\infty y}(t) &=& r_0\sum_{k=1}^{\infty} {s(k)\frac 1 {g(k)} \sin { 2\pi f_0 h(k) t} }
+\end{eqnarray}
+<p>この式をよく見ると、\(p_{\infty x}(t)\)は偶関数のフーリエ級数展開、\(p_{\infty y}(t)\)は奇関数のフーリエ級数展開になっており</p>
 \begin{eqnarray}
 r_0 &=& \frac 4 \pi \\
 s(k) &=& 1 \\
@@ -94,7 +102,7 @@ s(k) &=& \sin {\frac{(2n-1)\pi} {2}} \\
 g(k) &=& 2k - 1 \\
 h(k) &=& (2k - 1)^2
 \end{eqnarray}
-<p>とすれば\(p_{ny}(t)\)は三角波に他ならない。</p>
+<p>とすれば\(p_{ny}(t)\)は三角波になる。</p>
 <h3>実装</h3>
 <p>まず一般化しておく</p>
 <pre class="highlighter-rouge">

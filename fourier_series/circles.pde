@@ -17,12 +17,13 @@ class Circles implements Drawable {
      circles.clear();
    }
    public void draw() {
-    stroke(0);
     strokeWeight(1);
     noFill();
      for(FourierCircle c: circles) {
-        ellipse(c.cx, c.cy, 2 * c.r, 2 * c.r);
-        line(c.cx, c.cy, c.px, c.py);
+        stroke(0);
+        ellipse(c.getCx(), c.getCy(), 2 * c.getR(), 2 * c.getR());
+        stroke(#FF0000);
+        line(c.getCx(), c.getCy(), c.getPx(), c.getPy());
      }
    }
   public void generate() {
