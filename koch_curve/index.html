@@ -16,9 +16,40 @@ highlighter: rouge
 <p>要するに、時刻\(t+1\)における状態は、時刻\(t\)における各線分を4つの線分で置き換えることで得られるので、tに関して無限に繰り返せばよい。</p>
 <p>1つの線分から4つの線分を得る方法は以下の通り。</p>
 <h3>実装</h3>
+<p>上の通りに書くだけ</p>
 <pre>
     <code>
-    
+    class Koch {
+      public Koch(float x1, float y1, float x2, float y2) {
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
+      }
+      public float x1, y1, x2, y2;
+      public ArrayList<Koch> getChildren() {
+        ArrayList<Koch> res = new ArrayList<Koch>();
+        float p1x = (2 * x1 + x2) / 3;
+        float p1y = (2 * y1 + y2) / 3;
+        Koch k1 = new Koch(x1, y1, p1x, p1y);
+
+        float p2x = x1 + (x2 - x1) / 2 - sqrt(3) * (y2 - y1) / 6;
+        float p2y = y1 + (y2 - y1) / 2 + sqrt(3) * (x2 - x1) / 6;  
+
+        Koch k2 = new Koch(p1x, p1y, p2x, p2y);
+        res.add(k1);
+        res.add(k2);
+        float p3x = (2 * x2 + x1) / 3;
+        float p3y = (2 * y2 + y1) / 3;
+
+        Koch k3 = new Koch(p2x, p2y, p3x, p3y);
+        Koch k4 = new Koch(p3x, p3y, x2, y2);
+        res.add(k3);
+        res.add(k4);
+
+        return res;
+      }
+    }
     </code>
 </pre>
 <script src="../processing.min.js"></script>
