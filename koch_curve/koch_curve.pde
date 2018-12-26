@@ -13,7 +13,7 @@ void setup() {
 void draw() {
   background(#FFFFFF);
   ArrayList<Koch> tmp = new ArrayList<Koch>();
-  if(time < 1000) time++;
+  if(time < 600) time++;
   else noLoop();
   for(Koch c: kochs) {
     line(c.x1,c.y1,c.x2,c.y2);
