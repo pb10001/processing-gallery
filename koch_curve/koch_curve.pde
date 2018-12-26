@@ -4,13 +4,14 @@ final int INTERVAL = 100;
 int time = 0;
 ArrayList<Koch> kochs = new ArrayList<Koch>();
 void setup() {
-  size(1000,1000);
+  size(500,500);
   kochs.add(new Koch(900, 250, 100, 250));
   kochs.add(new Koch(100, 250, 500, 250 + 400 * sqrt(3)));
   kochs.add(new Koch(500, 250 + 400 * sqrt(3), 900, 250));
   noLoop();
 }
 void draw() {
+  scale(0.5);
   background(#FFFFFF);
   ArrayList<Koch> tmp = new ArrayList<Koch>();
   if(time < 600) time++;
