@@ -1,5 +1,5 @@
 const MAX_N = 100;
-const RESOLUTION = 15;
+const RESOLUTION = 10;
 const PADDING = 10;
 const A = 0.7;
 const B = 4
