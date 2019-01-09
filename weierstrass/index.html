@@ -15,7 +15,8 @@ highlighter: rouge
   <meta charset="utf-8" />
 </head>
 <body>
-  <h2>ワイエルシュトラス関数</h2>
+  <h2>ワイエルシュトラス関数1</h2>
+  <p>見た目のインパクトがすごい関数</p>
   <h3>デモ</h3>
   <p>マウスホイールで拡大縮小、クリックで中心移動</p>
   <div id="p5"></div>
@@ -32,6 +33,7 @@ highlighter: rouge
   w(x) = \sum_{n=0}^{\infty} {a^n \cos(b ^ n \pi x)}
   \]
   <p>を使う。Wikipediaによれば、\(a\)および\(b\)は \(0\lt a \lt 1\)かつ \(b\)が奇数の整数かつ \(ab > 1 + \frac {3} {2} \pi \simeq 5.71 \)を満たすように選べばよい。</p>
+  <p>無限回の足し算はできないので、\(n\)回で切る。</p>
   <pre>
     <code class="js">
     function weierstrass(n, x) {
