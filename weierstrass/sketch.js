@@ -2,7 +2,7 @@ const MAX_N = 100;
 const RESOLUTION = 10;
 const PADDING = 10;
 const A = 0.7;
-const B = 4
+const B = 5
 
 let currentScale = 1;
 let centerX = 0;
@@ -28,7 +28,7 @@ function draw() {
   ellipse(0, 0, 10 / currentScale, 10 / currentScale);
   beginShape();
 	stroke("gray");
-  strokeWeight(.1);
+  strokeWeight(.5);
 	noFill();
 	for (let x = - 2 * width * RESOLUTION; x <  2 * width * RESOLUTION; x++) {
 		let y =  height / 10 * weierstrass(MAX_N, x / width / RESOLUTION);
