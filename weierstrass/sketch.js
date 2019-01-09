@@ -28,7 +28,7 @@ function draw() {
   ellipse(0, 0, 10 / currentScale, 10 / currentScale);
   beginShape();
 	stroke("gray");
-  strokeWeight(.5);
+  strokeWeight(.3);
 	noFill();
 	for (let x = - 2 * width * RESOLUTION; x <  2 * width * RESOLUTION; x++) {
 		let y =  height / 10 * weierstrass(MAX_N, x / width / RESOLUTION);
@@ -40,16 +40,25 @@ function draw() {
 
 function mousePressed(event) {
   if(mouseX < 0 || mouseY < 0 || mouseX > width || mouseY > height) return;
-  centerX +=  (width / 2 - mouseX);
-  centerY +=  (height / 2 - mouseY);
+  centerX = centerX + (width / 2 - mouseX);
+  centerY = centerY + (height / 2 - mouseY);
   loop();
 }
 
 function mouseWheel(event) {
   if(mouseX < 0 || mouseY < 0 || mouseX > width || mouseY > height) return true;
   let val = event.delta;
-  if(val < 0) currentScale  = Math.min(10, currentScale * 1.25);
-  else currentScale = Math.max(0.3, currentScale * 0.8);
+  let dx = centerX - width  / 2;
+  dx /= currentScale;
+  let dy = centerY - height / 2; 
+  dy /= currentScale;
+  if(val < 0) {
+    currentScale = Math.min(30, currentScale * 1.25);
+  } else{
+    currentScale = Math.max(0.3, currentScale * 0.8);
+  }
+  centerX = width / 2 + dx * currentScale;
+  centerY = height / 2 + dy * currentScale;
   loop();
   return false;
 }
