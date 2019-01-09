@@ -1,45 +1,46 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet"
-    href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.sound.min.js"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <meta charset="utf-8" />
-  </head>
-  <body>
-    <h2>ワイエルシュトラス関数</h2>
-    <h3>デモ</h3>
-    <div id="p5"></div>
-    <h3>説明</h3>
-    <p>ワイエルシュトラス関数（ワイエルシュトラスかんすう、英: Weierstrass function）は、
-      1872年にカール・ワイエルシュトラスにより提示された実数関数で、連続関数であるにもかか
-      わらず至るところ微分不可能な関数である。
-      <a target="_blank" href="https://ja.wikipedia.org/wiki/%E3%83%AF%E3%82%A4%E3%82%A8%E3%83%AB%E3%82%B7%E3%83%A5%E3%83%88%E3%83%A9%E3%82%B9%E9%96%A2%E6%95%B0">
-        出典: フリー百科事典『ウィキペディア（Wikipedia）』
-      </a>
-    </p>
-    <h3>実装</h3>
-    \[
-    w(x) = \sum_{n=0}^{\infty} {a^n \cos(b ^ n \pi x)}
-    \]
-    <p>を使う。\(a\)および\(b\)は \(ab > 1 + \frac {3} {2} \pi \simeq 5.71 \)を満たすように選べばよい。</p>
-    <pre>
-      <code class="js">
-      function weierschtrass(n, x) {
-        let res = 0;
-        for (let i = 0; i < n; i++) {
-          res += Math.pow(A, i) * Math.cos(Math.pow(B, i) * Math.PI * x);
-        }
-        return res;
+---
+layout: default
+highlighter: rouge
+---
+<head>
+  <link rel="stylesheet"
+  href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.sound.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="utf-8" />
+</head>
+<body>
+  <h2>ワイエルシュトラス関数</h2>
+  <h3>デモ</h3>
+  <div id="p5"></div>
+  <h3>説明</h3>
+  <p>ワイエルシュトラス関数（ワイエルシュトラスかんすう、英: Weierstrass function）は、
+    1872年にカール・ワイエルシュトラスにより提示された実数関数で、連続関数であるにもかか
+    わらず至るところ微分不可能な関数である。
+    <a target="_blank" href="https://ja.wikipedia.org/wiki/%E3%83%AF%E3%82%A4%E3%82%A8%E3%83%AB%E3%82%B7%E3%83%A5%E3%83%88%E3%83%A9%E3%82%B9%E9%96%A2%E6%95%B0">
+      出典: フリー百科事典『ウィキペディア（Wikipedia）』
+    </a>
+  </p>
+  <h3>実装</h3>
+  \[
+  w(x) = \sum_{n=0}^{\infty} {a^n \cos(b ^ n \pi x)}
+  \]
+  <p>を使う。\(a\)および\(b\)は \(ab > 1 + \frac {3} {2} \pi \simeq 5.71 \)を満たすように選べばよい。</p>
+  <pre>
+    <code class="js">
+    function weierschtrass(n, x) {
+      let res = 0;
+      for (let i = 0; i < n; i++) {
+        res += Math.pow(A, i) * Math.cos(Math.pow(B, i) * Math.PI * x);
       }
-      </code>
-    </pre>
-    <script src="sketch.js"></script>
-  </body>
-</html>
+      return res;
+    }
+    </code>
+  </pre>
+  <script src="sketch.js"></script>
+</body>
