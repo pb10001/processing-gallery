@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 final int PERIOD = 1000; // the period of rotation
-final int LOOP_NUM = 5;
+final int LOOP_NUM = 1;
 final int INIT_RADIUS = 150; // the radius of the biggest circle
 final int NUM = 20; // the number of circles
 final float OFFSET = 20;
