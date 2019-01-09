@@ -31,7 +31,7 @@ function draw() {
   strokeWeight(.1);
 	noFill();
 	for (let x = - 2 * width * RESOLUTION; x <  2 * width * RESOLUTION; x++) {
-		let y =  height / 10 * weierschtrass(MAX_N, x / width / RESOLUTION);
+		let y =  height / 10 * weierstrass(MAX_N, x / width / RESOLUTION);
     vertex(x / RESOLUTION,  - y);
 	}
   endShape();
@@ -54,7 +54,7 @@ function mouseWheel(event) {
   return false;
 }
 
-function weierschtrass(n, x) {
+function weierstrass(n, x) {
 	let res = 0;
 	for (let i = 0; i < n; i++) {
 		res += Math.pow(A, i) * Math.cos(Math.pow(B, i) * Math.PI * x);
