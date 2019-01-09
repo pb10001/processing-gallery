@@ -28,7 +28,7 @@ function draw() {
   ellipse(0, 0, 10 / currentScale, 10 / currentScale);
   beginShape();
 	stroke("gray");
-  strokeWeight(.3);
+  strokeWeight(1);
 	noFill();
 	for (let x = - 2 * width * RESOLUTION; x <  2 * width * RESOLUTION; x++) {
 		let y =  height / 10 * weierstrass(MAX_N, x / width / RESOLUTION);
