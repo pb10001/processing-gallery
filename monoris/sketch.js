@@ -23,13 +23,13 @@ function draw() {
     blocks = blocks.filter((b) => b.y !== 400 - BLOCK_UNIT);
     blocks.map((b) => b.fall());
     b = new Block(400 / 2, 0);
-  } else if (fallable(b.x, b.y)) {
+  } else if (isEmpty(b.x, b.y + BLOCK_UNIT)) {
     b.fall();
   } else {
     var tmp = Object.assign({}, b);
     blocks.push(tmp);
     b = new Block(400 / 2, - BLOCK_UNIT);
-    if(!fallable(b.x, b.y)) {
+    if(!isEmpty(b.x, b.y + BLOCK_UNIT)) {
         isGameOver = true;
     }
   }
@@ -39,13 +39,13 @@ function draw() {
   }
 }
 
-function fallable(x, y) {
-  if (y >= 400 - BLOCK_UNIT) {
+function isEmpty(x, y) {
+  if (x < 100 || x >= 300 || y >= 400) {
     return false;
   }
   for (var key in blocks) {
     if (x === blocks[key].x &&
-      y + BLOCK_UNIT === blocks[key].y) {
+      	y === blocks[key].y) {
       return false;
     }
   }
@@ -57,11 +57,11 @@ function keyPressed() {
     isGameOver = false;
     init();
   } else if (keyCode === 37) {
-    if(b.x > 100) {
+    if(isEmpty(b.x - BLOCK_UNIT, b.y)) {
       b.moveLeft();
     }
   } else if (keyCode === 39) {
-    if(b.x < 300 - BLOCK_UNIT) {
+    if(isEmpty(b.x + BLOCK_UNIT, b.y)) {
       b.moveRight();
     }
   }
