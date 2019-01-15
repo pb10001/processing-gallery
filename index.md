@@ -5,4 +5,4 @@
 - [ワイエルシュトラス関数2](./weierstrass/circles)
 - [ランダムウォーク](./random_walk)
 - [波](./wave_simulation)
-- [モノリス](./monoris)
+- [テトリス](./tetris)
