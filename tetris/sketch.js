@@ -50,7 +50,7 @@ var offsets = [
 function setup() {
   var canvas = createCanvas(400, 400);
   canvas.parent("p5");
-  frameRate(5);
+  frameRate(7);
 }
 
 function draw() {
