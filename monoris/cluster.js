@@ -3,6 +3,18 @@ function Cluster() {
     this.fall = function() {
 
     }
+    this.moveLeft = function() {
+        for(var key in this.blocks) {
+            blocks[key].moveLeft();
+        }
+
+    }
+    this.moveRight = function() {
+        for(var key in this.blocks) {
+            blocks[key].moveRight();
+        }
+
+    }
     this.rotateLeft = function() {
 
     }
