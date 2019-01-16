@@ -1,4 +1,4 @@
-var current;
+var current, next, nextOffset;
 var field = new Field();
 var BLOCK_UNIT = 20;
 var isGameOver = true;
@@ -6,15 +6,15 @@ var isPaused = false;
 var offsets = [
   /* Reverse L-shape */
   [
-    {x: 0, y: + BLOCK_UNIT},
-    {x: 0, y: + 2 * BLOCK_UNIT},
-    {x: - BLOCK_UNIT, y: 0}
+    {x: 0, y: - BLOCK_UNIT},
+    {x: 0, y: BLOCK_UNIT},
+    {x: - BLOCK_UNIT, y: BLOCK_UNIT}
   ],
   /* L-shape */
   [
-    {x: 0, y: + BLOCK_UNIT},
-    {x: 0, y: + 2 * BLOCK_UNIT},
-    {x: BLOCK_UNIT, y: 0}
+    {x: 0, y: - BLOCK_UNIT},
+    {x: 0, y: BLOCK_UNIT},
+    {x: BLOCK_UNIT, y: BLOCK_UNIT}
   ],
   /* T-shape */
   [
@@ -25,8 +25,8 @@ var offsets = [
   /* Square */
   [
     {x: 0, y: + BLOCK_UNIT},
-    {x: - BLOCK_UNIT, y: 0},
-    {x: - BLOCK_UNIT, y: BLOCK_UNIT}
+    {x: BLOCK_UNIT, y: 0},
+    {x: BLOCK_UNIT, y: BLOCK_UNIT}
   ],
   /* Z-shape */
   [
@@ -43,8 +43,8 @@ var offsets = [
   /* I-shape */
   [
     {x: 0, y: - BLOCK_UNIT},
-    {x: 0, y: - 2 * BLOCK_UNIT},
-    {x: 0, y: - 3 * BLOCK_UNIT}    
+    {x: 0, y: BLOCK_UNIT},
+    {x: 0, y: 2 * BLOCK_UNIT}    
   ]
 ]
 function setup() {
@@ -57,26 +57,28 @@ function draw() {
   background(220);
   fill(0);
   rect(100, 0, 200, 400); // render the field
+  textAlign(CENTER);
+  text("NEXT", 350, 15);
+  rect(320, 20, 60, 60); // render the next box
   if(isGameOver) {
     fill(255);
-    textAlign(CENTER);
     text("Press Enter to Start", 200, 200);
     return;
   }
   /* in play */
   if (field.removeRows()) {
-    current = new Cluster(new Block(400 / 2, -BLOCK_UNIT),  pickOffset());
   } else if (current.allBlocks().map((b) => field.isEmpty(b.x, b.y + BLOCK_UNIT)).reduce((a, b) => a & b, true)) {
     current.fall();
   } else {
     var tmp = current;
     field.addBlocks(current.allBlocks());
-    current = new Cluster(new Block(400 / 2, - BLOCK_UNIT),  pickOffset());
+    refreshCluster();
     if(!field.isEmpty(current.root.x, current.root.y + BLOCK_UNIT)) {
         isGameOver = true;
     }
   }
   current.show();
+  next.show();
   field.show();
 }
 
@@ -116,12 +118,19 @@ function keyPressed() {
 }
 
 function init() {
-  current = new Cluster(new Block(400 / 2, - BLOCK_UNIT), pickOffset());
+  current = new Cluster(new Block(400 / 2 -BLOCK_UNIT, - BLOCK_UNIT), pickOffset());
+  nextOffset = pickOffset();
+  next = new Cluster(new Block(340, 60), nextOffset);
   field.clear();
 }
 function pickOffset() {
   var num = Math.floor(random(7));
   return offsets[num];
+}
+function refreshCluster() {
+    current = new Cluster(new Block(400 / 2 - BLOCK_UNIT, - BLOCK_UNIT),  nextOffset);
+    nextOffset = pickOffset();
+    next = new Cluster(new Block(340, 60), nextOffset);
 }
 
 function Block(x, y) {
