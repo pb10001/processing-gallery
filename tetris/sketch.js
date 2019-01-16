@@ -18,7 +18,7 @@ var offsets = [
   ],
   /* T-shape */
   [
-    {x: 0, y: + BLOCK_UNIT},
+    {x: 0, y: - BLOCK_UNIT},
     {x: BLOCK_UNIT, y: 0},
     {x: - BLOCK_UNIT, y: 0}
   ],
