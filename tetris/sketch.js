@@ -118,9 +118,9 @@ function keyPressed() {
 }
 
 function init() {
-  current = new Cluster(new Block(400 / 2 -BLOCK_UNIT, - BLOCK_UNIT), pickOffset());
+  current = new Cluster(new Block(width / 2 -BLOCK_UNIT, - BLOCK_UNIT), pickOffset());
   nextOffset = pickOffset();
-  next = new Cluster(new Block(340, 60), nextOffset);
+  next = new Cluster(new Block(680, 120), nextOffset);
   field.clear();
 }
 function pickOffset() {
@@ -128,9 +128,9 @@ function pickOffset() {
   return offsets[num];
 }
 function refreshCluster() {
-    current = new Cluster(new Block(400 / 2 - BLOCK_UNIT, - BLOCK_UNIT),  nextOffset);
+    current = new Cluster(new Block(width / 2 - BLOCK_UNIT, - BLOCK_UNIT),  nextOffset);
     nextOffset = pickOffset();
-    next = new Cluster(new Block(340, 60), nextOffset);
+    next = new Cluster(new Block(680, 120), nextOffset);
 }
 
 function Block(x, y) {
