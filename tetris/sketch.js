@@ -1,6 +1,6 @@
 var current, next, nextOffset;
 var field = new Field();
-var BLOCK_UNIT = 20;
+var BLOCK_UNIT = 40;
 var isGameOver = true;
 var isPaused = false;
 var offsets = [
@@ -48,7 +48,7 @@ var offsets = [
   ]
 ]
 function setup() {
-  var canvas = createCanvas(400, 400);
+  var canvas = createCanvas(800, 800);
   canvas.parent("p5");
   frameRate(7);
 }
@@ -56,13 +56,13 @@ function setup() {
 function draw() {
   background(220);
   fill(0);
-  rect(100, 0, 200, 400); // render the field
+  rect(100, 0, width/2, height); // render the field
   textAlign(CENTER);
   text("NEXT", 350, 15);
-  rect(320, 20, 60, 60); // render the next box
+  rect(640, 40, 120, 120); // render the next box
   if(isGameOver) {
     fill(255);
-    text("Press Enter to Start", 200, 200);
+    text("Press Enter to Start", width/2, heght/2);
     return;
   }
   /* in play */
