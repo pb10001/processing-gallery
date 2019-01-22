@@ -56,9 +56,9 @@ function setup() {
 function draw() {
   background(220);
   fill(0);
-  rect(100, 0, width/2, height); // render the field
+  rect(width/4, 0, width/2, height); // render the field
   textAlign(CENTER);
-  text("NEXT", 350, 15);
+  text("NEXT", 700, 30);
   rect(640, 40, 120, 120); // render the next box
   if(isGameOver) {
     fill(255);
