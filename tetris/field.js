@@ -1,7 +1,7 @@
 function Field() {
-  this.leftX = 100;
-  this.rightX = 300;
-  this.bottomY = 400;
+  this.leftX = 200;
+  this.rightX = 600;
+  this.bottomY = 800;
   this.blocks = [];
   this.clear = function() {
     this.blocks = [];
