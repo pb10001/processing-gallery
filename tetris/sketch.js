@@ -62,7 +62,7 @@ function draw() {
   rect(640, 40, 120, 120); // render the next box
   if(isGameOver) {
     fill(255);
-    text("Press Enter to Start", width/2, heght/2);
+    text("Press Enter to Start", width/2, height/2);
     return;
   }
   /* in play */
